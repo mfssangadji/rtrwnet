@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 03:33 PM
+-- Generation Time: Oct 06, 2020 at 04:55 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -273,7 +273,8 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`id`, `hotspot_id`, `qty`, `cost`, `description`, `created_at`, `updated_at`) VALUES
-(1, 11, 23, 20000, '-', '2020-10-06 11:36:09', '2020-10-06 11:36:09');
+(6, 11, 23, 92000, '-', '2020-10-06 14:42:45', '2020-10-06 14:42:45'),
+(7, 10, 2, 8000, '-', '2020-10-06 14:53:50', '2020-10-06 14:53:50');
 
 -- --------------------------------------------------------
 
@@ -420,7 +421,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`

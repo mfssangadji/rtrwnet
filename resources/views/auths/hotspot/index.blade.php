@@ -27,7 +27,16 @@
             			<td>{{$loop->iteration}}</td>
             			<td>{{$hotspot->name}}</td>
             			<td>{{$hotspot->agent_point}}</td>
-            			<td>{{$hotspot->stock->count()}}</td>
+            			@foreach($hotspot->stock as $stock)
+            				<?php
+            					$qty[$hotspot->id][] = $stock->qty;
+            				?>
+            			@endforeach
+            			@if(isset($qty[$hotspot->id]))
+            				<td>{{array_sum($qty[$hotspot->id])}}</td>
+            			@else
+            				<td>-</td>
+            			@endif
             			<td>-</td>
             			<td>
 			              	<a href="{{url(config('app.root').'/hotspot/'.$hotspot->id.'/stock')}}"><spane class="badge badge-warning">pengambilan stok</span></a><form method="post" action="{{ route('hotspot').'/'.$hotspot->id }}" style="display:inline;">

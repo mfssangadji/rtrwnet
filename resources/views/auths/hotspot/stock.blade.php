@@ -5,6 +5,7 @@
 	      <div class="x_title">
 	        <h2>Data<small><i>Pengambilan Stok Agen: <strong>{{$hotspot->name}} - {{$hotspot->agent_point}}</strong></i></small></h2>
 	        <a onclick="self.history.back()" class="btn btn-primary btn-sm" style="float: right; color: #FFF; cursor: pointer;">Kembali</a>
+	        <a href="{{url(config('app.root').'/hotspot/'.$id.'/stock/create')}}" class="btn btn-success btn-sm" style="float: right; color: #FFF; cursor: pointer;">Tambah Pengambilan</a>
 	        <!-- <a href="{{url(config('app.root').'/customers/'.$id.'/pembayaran/create')}}" class="btn btn-success btn-sm" style="float: right;">Input Pembayaran</a> -->
 	        <div class="clearfix"></div>
 	      </div>
@@ -16,6 +17,7 @@
 	            <tr>
 	              <th>No</th>
 	              <th>QTY Pengambilan</th>
+	              <th>Satuan</th>
 	              <th>Total Biaya</th>
 	              <th>Keterangan</th>
 	              <th>Tanggal</th>
@@ -27,11 +29,12 @@
             		<tr>
             			<td>{{$loop->iteration}}</td>
             			<td>{{$stock->qty}}</td>
+            			<td>Rp. {{number_format(4000)}}</td>
             			<td>Rp. {{number_format($stock->cost)}}</td>
-            			<td>{{$stock->desription}}</td>
+            			<td>{{$stock->description}}</td>
             			<td>{{$stock->created_at->format('d F Y')}}</td>
             			<td>
-			              	<a href="#" title="ubah"><spane class="badge badge-success">edit</span></a><form method="post" action="#" style="display:inline;">
+			              	<a href="{{url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id.'/edit')}}" title="ubah"><spane class="badge badge-success">edit</span></a><form method="post" action="{{url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id)}}" style="display:inline;">
             					@method('DELETE')
             					@csrf
             				<button type="submit" class="" style="background-color: transparent; border:none;" onclick="return confirm('Apakan anda yakin?')" style="border: none;"><span class="badge badge-danger">hapus</span></button>
