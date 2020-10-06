@@ -16,8 +16,8 @@
 	              <th>#</th>
 	              <th>Nama</th>
 	              <th>Titik Agen</th>
+	              <th>QTY Pengambilan Terakhir</th>
 	              <th>Total Pengambilan</th>
-	              <th>Penerimaan Terakhir</th>
 	              <th>Proses</th>
 	            </tr>
 	          </thead>
@@ -33,11 +33,12 @@
             				?>
             			@endforeach
             			@if(isset($qty[$hotspot->id]))
+            				<td>{{$hotspot->stock->last()->qty}}</td>
             				<td>{{array_sum($qty[$hotspot->id])}}</td>
             			@else
             				<td>-</td>
+            				<td>-</td>
             			@endif
-            			<td>-</td>
             			<td>
 			              	<a href="{{url(config('app.root').'/hotspot/'.$hotspot->id.'/stock')}}"><spane class="badge badge-warning">pengambilan stok</span></a><form method="post" action="{{ route('hotspot').'/'.$hotspot->id }}" style="display:inline;">
 			              	<a href="{{ route('hotspot').'/'.$hotspot->id.'/edit' }}" title="ubah"><spane class="badge badge-success">edit</span></a><form method="post" action="{{ route('hotspot').'/'.$hotspot->id }}" style="display:inline;">
