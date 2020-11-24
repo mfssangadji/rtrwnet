@@ -15,11 +15,15 @@
 	          <thead>
 	            <tr>
 	              <th>No</th>
-	              <th>QTY Pengambilan</th>
+	              <th>Status</th>
+	              <th>QTY</th>
+	              <th>Voucher</th>
 	              <th>Satuan</th>
 	              <th>Total Biaya</th>
 	              <th>Keterangan</th>
-	              <th>Tanggal</th>
+	              <th>Tanggal Pengambilan</th>
+	              <th>Jumlah Setor</th>
+	              <th>Tanggal Setor</th>
 	              <th>Proses</th>
 	            </tr>
 	          </thead>
@@ -27,13 +31,34 @@
             	<?php $__currentLoopData = $hotspot->stock; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stock): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             		<tr>
             			<td><?php echo e($loop->iteration); ?></td>
+            			<?php if(isset($stock->setor)): ?>
+	            			<?php if($stock->setor->count()>0): ?>
+	            				<td><span class="badge badge-success">Lunas</span>
+	            					<a href="<?php echo e(url(config('app.root').'/hotspot/'.Request::segment(3).'/'.Request::segment(4).'/'.$stock->id.'/reset')); ?>" onclick="return confirm('Apakah anda yakin?')"><span class="badge badge-danger">Reset</span></a></td>
+	            			<?php endif; ?>
+	            		<?php else: ?>
+	            			<td>-</td>
+	            		<?php endif; ?>
             			<td><?php echo e($stock->qty); ?></td>
-            			<td>Rp. <?php echo e(number_format(4000)); ?></td>
+            			<td><?php echo e($stock->voucher->name); ?></td>
+            			<td>Rp. <?php echo e(number_format($stock->voucher->price)); ?></td>
             			<td>Rp. <?php echo e(number_format($stock->cost)); ?></td>
             			<td><?php echo e($stock->description); ?></td>
             			<td><?php echo e($stock->created_at->format('d F Y')); ?></td>
+            			<?php if(isset($stock->setor)): ?>
+            				<td><?php echo e($stock->setor->jumlah_setor); ?></td>
+            				<td><?php echo e(date('d F Y', strtotime($stock->setor->tanggal_setor))); ?></td>
+            			<?php else: ?>
+            				<td>-</td>
+            				<td>-</td>
+            			<?php endif; ?>
             			<td>
-			              	<a href="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id.'/edit')); ?>" title="ubah"><spane class="badge badge-success">edit</span></a><form method="post" action="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id)); ?>" style="display:inline;">
+			              	<?php if(!isset($stock->setor)): ?>
+			              		<a href="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id.'/setor')); ?>" title="Setor Pengambilan"><span class="badge badge-warning">setor pengambilan</span></a>
+			              	<?php endif; ?>
+			              	<a href="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id.'/invoice')); ?>" title="Cetak Invoice"><span class="badge badge-info">cetak invoice</span></a>
+			              	<a href="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id.'/edit')); ?>" title="ubah"><span class="badge badge-success">edit</span></a>
+			              	<form method="post" action="<?php echo e(url(config('app.root').'/hotspot/'.$hotspot->id.'/stock/'.$stock->id)); ?>" style="display:inline;">
             					<?php echo method_field('DELETE'); ?>
             					<?php echo csrf_field(); ?>
             				<button type="submit" class="" style="background-color: transparent; border:none;" onclick="return confirm('Apakan anda yakin?')" style="border: none;"><span class="badge badge-danger">hapus</span></button>

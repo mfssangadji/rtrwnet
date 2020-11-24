@@ -4,7 +4,7 @@
 	    <div class="x_panel">
 	      <div class="x_title">
 	        <h2>Data<small><i>Agen Hotspot</i></small></h2>
-	        <a href="{{route('hotspot.create')}}" class="btn btn-success btn-sm" style="float: right;">Tambah Pelanggan Baru</a>
+	        <a href="{{route('hotspot.create')}}" class="btn btn-success btn-sm" style="float: right;">Tambah Agen Baru</a>
 	        <div class="clearfix"></div>
 	      </div>
 	          <div class="row">

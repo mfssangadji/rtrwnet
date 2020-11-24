@@ -12,6 +12,23 @@
 				<?php echo csrf_field(); ?>
 				<?php echo method_field('PATCH'); ?>
 				<div class="item form-group">
+					<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Voucher <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 ">
+						<select name="voucher_id" class="form-control" required>
+							<option selected disabled></option>
+							<?php $__currentLoopData = $voucher; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<?php if($v->id == $stock->voucher_id): ?>
+									<option value="<?php echo e($v->id); ?>" selected><?php echo e($v->name); ?></option>
+								<?php else: ?>
+									<option value="<?php echo e($v->id); ?>"><?php echo e($v->name); ?></option>
+								<?php endif; ?>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+						</select>
+					</div>
+				</div>
+
+				<div class="item form-group">
 					<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">QTY <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 ">

@@ -13,6 +13,23 @@
 				@csrf
 				@method('PATCH')
 				<div class="item form-group">
+					<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Voucher <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 ">
+						<select name="voucher_id" class="form-control" required>
+							<option selected disabled></option>
+							@foreach($voucher as $v)
+								@if($v->id == $stock->voucher_id)
+									<option value="{{$v->id}}" selected>{{$v->name}}</option>
+								@else
+									<option value="{{$v->id}}">{{$v->name}}</option>
+								@endif
+							@endforeach
+						</select>
+					</div>
+				</div>
+
+				<div class="item form-group">
 					<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">QTY <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 ">

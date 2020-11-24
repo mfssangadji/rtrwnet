@@ -57,6 +57,10 @@ Route::get(config('app.root').'/hotspot/{id}/stock/create', 'App\Http\Controller
 Route::post(config('app.root').'/hotspot/{id}/stock', 'App\Http\Controllers\StockController@store');
 Route::delete(config('app.root').'/hotspot/{id}/stock/{sid}', 'App\Http\Controllers\StockController@destroy');
 Route::get(config('app.root').'/hotspot/{id}/stock/{sid}/edit', 'App\Http\Controllers\StockController@edit');
+Route::get(config('app.root').'/hotspot/{id}/stock/{sid}/setor', 'App\Http\Controllers\StockController@setor');
+Route::post(config('app.root').'/hotspot/{id}/stock/{sid}/setor', 'App\Http\Controllers\StockController@psetor');
+Route::get(config('app.root').'/hotspot/{id}/stock/{sid}/reset', 'App\Http\Controllers\StockController@reset');
+Route::get(config('app.root').'/hotspot/{id}/stock/{sid}/invoice', 'App\Http\Controllers\StockController@invoice');
 Route::patch(config('app.root').'/hotspot/{id}/stock/{sid}', 'App\Http\Controllers\StockController@update');
 Route::resource(config('app.root').'/hotspot', 'App\Http\Controllers\HotspotController', [
 	'names' => [
